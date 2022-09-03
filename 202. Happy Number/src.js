@@ -5,14 +5,18 @@
 
  var isHappy = function(n) {
     const constraint = (1 <= n <= Math.pow(2, 31) - 1);
+    
     if(!constraint)
         return
 
     let result = 0;
     let helper = n;
-    
+    const rememberNumber = [];
+
     while(1){
-        console.log(helper)
+        if(rememberNumber.indexOf(helper) != -1)
+            return false
+            
         const helperSplitted = helper.toString().split("");
         result = 0;
 
@@ -23,9 +27,7 @@
         if(result == 1)
             break
 
-        if(helper%10 == 0)
-            return false
-
+        rememberNumber.push(helper);
         helper = result;
     }
 
@@ -33,4 +35,4 @@
 };
 
 
-console.log(isHappy(7))
+console.log(isHappy(19))
